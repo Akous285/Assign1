@@ -1,4 +1,4 @@
-package mru.game.application;
+package Application;
 
 
 public class AppDriver {

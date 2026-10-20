@@ -1,4 +1,4 @@
-package mru.game.controller;
+package controller;
 
 
 public class GameManager {

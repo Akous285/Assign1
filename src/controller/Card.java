@@ -1,4 +1,4 @@
-package mru.game.controller;
+package controller;
 
 /**
  * This class represents a card

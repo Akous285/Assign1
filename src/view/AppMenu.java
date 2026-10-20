@@ -1,4 +1,4 @@
-package mru.game.view;
+package view;
 
 
 public class AppMenu {

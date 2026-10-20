@@ -1,4 +1,4 @@
-package mru.game.model;
+package model;
 
 public class Player {
 	
