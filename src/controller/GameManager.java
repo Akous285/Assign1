@@ -61,13 +61,13 @@ public class GameManager {
 	
 	// A method to search for a player based their name
 	
-	public void searchForPlayer() {
+	public void searchForPlayer(ArrayList<String[]> players, String playerName) {
 		
 	}
 	
 	// A method to find the top players
 	
-	public void topPlayers() {
+	public void topPlayers(ArrayList<String[]> players) {
 		
 		
 	}
