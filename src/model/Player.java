@@ -42,4 +42,8 @@ public class Player {
 	public String toString() {
 		return "Name: " + name + "ID: " + id + "Number of Wins: " + numOfWins;
 	}
+	
+	public String format() {
+		return name + ";" + id + ";" + numOfWins;
+	}
 }
