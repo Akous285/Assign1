@@ -32,7 +32,7 @@ public class GameManager {
 		launchApplication();
 	}
 
-	private void launchApplication() {
+	private void launchApplication() throws IOException {
 
 		boolean flag = true;
 		int option;

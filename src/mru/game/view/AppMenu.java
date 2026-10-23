@@ -2,6 +2,8 @@ package mru.game.view;
 
 import java.util.Scanner;
 
+import mru.game.model.Player;
+
 
 public class AppMenu {
 	
@@ -41,19 +43,16 @@ public class AppMenu {
 		return name;
 	}
 	
+	public void showPlayer(Player player) {
+		System.out.println(player);
+	}
 	
-	
-
-
-
-
-
-
-
-
-
-
-
+	public String PromptId() {
+		
+		System.out.println("Enter Your ID here: ");
+		String id = input.nextLine().trim();
+		return id;
+	}
 }
 
 
