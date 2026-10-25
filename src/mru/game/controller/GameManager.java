@@ -117,17 +117,15 @@ public class GameManager {
 	// A method to search for a player based their name
 
 	private Player searchForPlayer(String name) {
-		String namee = appMenu.promptName();
-		Player searchedPlayer = null;
-		boolean found = false;
+		Player pl = null;
 		
 		for(Player p: players) {
 			if(p.getName().equals(name)) {
-				searchedPlayer = p;
+				pl = p;
 				break;
 			}
 		}
-		return searchedPlayer;
+		return pl;
 	}
 
 	// A method to find the top players

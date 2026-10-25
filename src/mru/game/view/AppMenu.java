@@ -31,15 +31,15 @@ public class AppMenu {
 			System.out.println("\t(T) Top player (Most number of wins)");
 			System.out.println("\t(N) Looking for a Name");
 			System.out.println("\t(B) Back to Main Menu\n");
-			System.out.print("Enter a choice");
+			System.out.print("Enter a choice: ");
 			char option = input.nextLine().toLowerCase().charAt(0);
 			return option;
 	}
 	
 	public String promptName() {
 		
-		System.out.println("Enter a Name: ");
-		String name  = input.next().trim().toLowerCase();
+		System.out.print("Enter a Name: ");
+		String name  = input.nextLine().trim().toLowerCase();
 		return name;
 	}
 	
@@ -52,7 +52,7 @@ public class AppMenu {
 	
 	public String promptId() {
 		
-		System.out.println("Enter Your ID here: ");
+		System.out.print("Enter Your ID here: ");
 		String id = input.nextLine().trim();
 		return id;
 	}
