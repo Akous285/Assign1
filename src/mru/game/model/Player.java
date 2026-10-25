@@ -32,6 +32,12 @@ public class Player {
 		
 		public void setNumOfWins(int numOfWins) {
 			this.numOfWins = numOfWins;
+			
+		}
+		
+		public int getNumOfWins() {
+			
+			return numOfWins;
 		}
 
 		public String toString() {

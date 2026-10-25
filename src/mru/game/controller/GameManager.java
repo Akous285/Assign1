@@ -20,9 +20,14 @@ public class GameManager {
 	 * methods here
 	 */
 
+	
+	int numOfWins;
+	
+	
 	public static final String FILE_PATH = "res/CasinoInfo.txt";
 	ArrayList<Player> players;
 	AppMenu appMenu;
+	BlackjackGame bg;
 
 	// constructor
 	public GameManager() throws Exception {
@@ -39,6 +44,7 @@ public class GameManager {
 
 		while (flag) {
 			option = appMenu.mainMenu();
+			System.out.println("Debug");
 			switch (option) {
 			case 1:
 				playGame();
@@ -56,6 +62,25 @@ public class GameManager {
 	}
 
 	private void playGame() {
+		String name = appMenu.promptName();
+		Player p = searchForPlayer(name);
+		
+		if(p == null) {
+			String id = appMenu.promptId();
+			players.add(new Player(name, id, numOfWins));
+		}
+		
+		bg = new BlackjackGame();
+		boolean win = bg.launchGame();
+		if (win) {
+			for (Player p1 : players) {
+				if(p1.getName().equals(name)) {
+					int num = p1.getNumOfWins();
+					p1.setNumOfWins(num+1);
+				}
+				
+			}
+		}
 		
 	}
 
@@ -68,7 +93,7 @@ public class GameManager {
 			Scanner reader = new Scanner(file);
 			while (reader.hasNextLine()) {
 				String line = reader.nextLine();
-				String[] splitLine = line.split(";");
+				String[] splitLine = line.split(",");
 				Player p = new Player(splitLine[0], splitLine[1], Integer.parseInt(splitLine[2]));
 				players.add(p);
 			}
@@ -92,8 +117,8 @@ public class GameManager {
 
 	// A method to search for a player based their name
 
-	private Player searchForPlayer() {
-		String name = appMenu.promptName();
+	private Player searchForPlayer(String name) {
+		String namee = appMenu.promptName();
 		Player searchedPlayer = null;
 		boolean found = false;
 		
@@ -123,7 +148,8 @@ public class GameManager {
 			topPlayers();
 			break;
 		case 's':
-			Player player = searchForPlayer();
+			String name = appMenu.promptName();
+			Player player = searchForPlayer(name);
 			appMenu.showPlayer(player);
 			break;
 		case 'b':

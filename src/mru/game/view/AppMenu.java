@@ -47,12 +47,47 @@ public class AppMenu {
 		System.out.println(player);
 	}
 	
-	public String PromptId() {
+	public String promptId() {
 		
 		System.out.println("Enter Your ID here: ");
 		String id = input.nextLine().trim();
 		return id;
 	}
+
+	public int showGameMenu() {
+		int guess;
+		System.out.print("Please enter a number between 1 and 21: ");
+		guess = input.nextInt();
+		
+		return guess;
+		
+	}
+
+	public void showGreaterMsg() {
+		
+		System.out.println("My name is greater than yours!");
+	}
+
+	public void showLesserMsg() {
+		
+		System.out.println("My name is less than yours! ");
+		
+	}
+
+	public void showCongrats() {
+		
+		System.out.println("Congrats! You won!");
+		
+		
+	}
+
+	public void showSorryMg(int number) {
+		
+		System.out.println("Sorry my number was " + number);
+		
+	}
+	
+	
 }
 
 
