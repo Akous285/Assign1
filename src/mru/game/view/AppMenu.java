@@ -20,7 +20,7 @@ public class AppMenu {
 			System.out.println("\t(P) Play game");
 			System.out.println("\t(S) Search");
 			System.out.println("\t(E) Exit\n");
-			System.out.print("Enter a choice:");
+			System.out.print("Enter a choice: ");
 			char option = input.nextLine().toLowerCase().charAt(0);
 			return option;
 	}
@@ -39,12 +39,15 @@ public class AppMenu {
 	public String promptName() {
 		
 		System.out.println("Enter a Name: ");
-		String name  = input.nextLine();
+		String name  = input.next().trim().toLowerCase();
 		return name;
 	}
 	
 	public void showPlayer(Player player) {
+		if (player != null)
 		System.out.println(player);
+		else
+			System.out.println("No records found for that name");
 	}
 	
 	public String promptId() {

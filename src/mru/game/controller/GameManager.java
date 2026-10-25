@@ -40,19 +40,18 @@ public class GameManager {
 	private void launchApplication() throws IOException {
 
 		boolean flag = true;
-		int option;
+		char option;
 
 		while (flag) {
 			option = appMenu.mainMenu();
-			System.out.println("Debug");
 			switch (option) {
-			case 1:
+			case 'p':
 				playGame();
 				break;
-			case 2:
+			case 's':
 				search();
 				break;
-			case 3:
+			case 'e':
 				save();
 				flag = false;
 				break;
@@ -93,7 +92,7 @@ public class GameManager {
 			Scanner reader = new Scanner(file);
 			while (reader.hasNextLine()) {
 				String line = reader.nextLine();
-				String[] splitLine = line.split(",");
+				String[] splitLine = line.split(";");
 				Player p = new Player(splitLine[0], splitLine[1], Integer.parseInt(splitLine[2]));
 				players.add(p);
 			}
