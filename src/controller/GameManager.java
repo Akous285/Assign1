@@ -22,6 +22,9 @@ public class GameManager {
 
 	public static final String FILE_PATH = "res/CasinoInfo.txt";
 	private ArrayList<Player> players;
+	// this is a copy of players that will be used in playerMostWins
+	private ArrayList<Player> remainingPlayers = new ArrayList<Player>(); 
+	
 	AppMenu appMenu;
 	BlackjackGame bjg;
 
@@ -50,6 +53,8 @@ public class GameManager {
 			case 'e':
 				save();
 				flag = false;
+				//debugging code
+				System.out.println("rerun");
 				break;
 			}
 		}
@@ -78,6 +83,42 @@ public class GameManager {
 		}
 	}
 
+	private void search() throws IOException {
+		char option = appMenu.searchMenu();
+		boolean flag = true;
+
+		while (flag) {
+			switch (option) {
+			case 't':
+				topPlayers();
+				break;
+			case 's':
+				String name = appMenu.promptName();
+				Player player = searchForPlayer(name);
+				appMenu.showPlayer(player);
+				break;
+			case 'b':
+				launchApplication();
+				flag = false;
+				break;
+			}
+		}
+	}
+
+	// A save method to store the arraylist into the the txt file
+
+	private void save() throws IOException {
+		File file = new File(FILE_PATH);
+		PrintWriter pw = new PrintWriter(file);
+
+		for (Player p : players) {
+			pw.println(p.format());
+		}
+
+		pw.close();
+
+	}
+
 	// A method to load the txt file into an arraylist (if it exists, so you check
 	// if the txt file exists first)
 	public void loadAndCheckFile() throws IOException {
@@ -100,20 +141,6 @@ public class GameManager {
 		}
 	}
 
-	// A save method to store the arraylist into the the txt file
-
-	private void save() throws IOException {
-		File file = new File(FILE_PATH);
-		PrintWriter pw = new PrintWriter(file);
-
-		for (Player p : players) {
-			pw.println(p.format());
-		}
-
-		pw.close();
-
-	}
-
 	// A method to search for a player based their name
 
 	private Player searchForPlayer(String name) {
@@ -128,44 +155,51 @@ public class GameManager {
 		return searchedPlayer;
 	}
 
-	// A method to find the top players
+	/**
+	 * Finds the three players with the most wins from the players list. The players
+	 * are returned in ranking order: index 0 is 1st place, index 1 is 2nd place,
+	 * and index 2 is 3rd place. The original players list is not modified.
+	 * 
+	 * If there are fewer than three players, the returned list will contain only as
+	 * many players as exist. If players are tied, the one that appears earlier in
+	 * players is ranked higher.
+	 *
+	 * @return a new list of up to three players, ordered from most wins to fewest
+	 */
+	private ArrayList<Player> topPlayers() {
+		// new list so we don't corrupt existing one
+		ArrayList<Player> remainingPlayers = new ArrayList<Player>(players);
+		ArrayList<Player> topThree = new ArrayList<Player>();
 
-	private void topPlayers() {
-		// check players with the most wins
-		// numOfWins is key here
-		for(Player p: players) { // sort through players and stop after you have gotten the player with the most wins
-								 // take that player and store them and take them out of the pool for the next iteration
-								 // until you have stored three players
-			
-			if(p.getNumOfWins()) { // need to check their numOfWins and select the top 3
-				
-			}
+		for (int place = 1; place <= 3 && remainingPlayers.size() > 0; place++) {
+			Player bestPlayer = playerMostWins(remainingPlayers);
+
+			topThree.add(bestPlayer);
+			remainingPlayers.remove(bestPlayer);
+
 		}
+		return topThree;
 	}
 
-	// Depending on your designing technique you may need and you can add more
-	// methods here
+	/**
+	 * Finds the player with the most wins in the given list. If multiple players
+	 * are tied for the most wins, the one that appears earliest in the list is
+	 * returned.
+	 *
+	 * @return the player with the highest number of wins
+	 */
+	private Player playerMostWins(ArrayList<Player> playerList) {
+	    Player bestPlayer = playerList.get(0);
 
-	private void search() throws IOException {
-		char option = appMenu.searchMenu();
-		boolean flag = true;
+	    for (int i = 1; i < playerList.size(); i++) {
+	        Player currentPlayer = playerList.get(i);
 
-		while (flag) {
-			switch (option) {
-			case 't':
-				topPlayers();
-				break;
-			case 's':
-				String name = appMenu.promptName();
-				Player player = searchForPlayer(name);
-				appMenu.showPlayer(player);
-				break;
-			case 'b':
-				launchApplication();
-				flag = false;
-				break;
-			}
-		}
+	        if (currentPlayer.getNumOfWins() > bestPlayer.getNumOfWins()) {
+	            bestPlayer = currentPlayer;
+	        }
+	    }
+
+	    return bestPlayer;
 	}
 
 }
