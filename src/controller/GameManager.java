@@ -32,13 +32,13 @@ public class GameManager {
 		launchApplication();
 	}
 
-	private void launchApplication() {
+	private void launchApplication() throws IOException {
 
 		boolean flag = true;
 		int option;
 
 		while (flag) {
-			option = appMenu.showMainMenu();
+			option = appMenu.mainMenu();
 			switch (option) {
 			case 1:
 				playGame();
@@ -116,7 +116,7 @@ public class GameManager {
 	// methods here
 	
 	private void search() {
-		char option = appMenu.showSubMenu();
+		char option = appMenu.searchMenu();
 		
 		switch(option) {
 		case 't':
