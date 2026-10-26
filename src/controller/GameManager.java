@@ -23,6 +23,7 @@ public class GameManager {
 	public static final String FILE_PATH = "res/CasinoInfo.txt";
 	ArrayList<Player> players;
 	AppMenu appMenu;
+	BlackjackGame bjg;
 
 	// constructor
 	public GameManager() throws Exception {
@@ -35,42 +36,65 @@ public class GameManager {
 	private void launchApplication() throws IOException {
 
 		boolean flag = true;
-		int option;
+		char option;
 
 		while (flag) {
 			option = appMenu.mainMenu();
 			switch (option) {
-			case 1:
+			case 'p':
 				playGame();
 				break;
-			case 2:
+			case 's':
 				search();
 				break;
-			case 3:
+			case 'e':
 				save();
 				flag = false;
 				break;
 			}
 		}
-
 	}
 
 	private void playGame() {
+		String name = appMenu.promptName();
+		Player p = searchForPlayer(name);
 		
+		if (p == null) {
+			String id = appMenu.promptId();
+			players.add(new Player(name, id, 0));
+			
+		}
+		
+		bjg = new BlackjackGame();
+		boolean win = bjg.launchGame();
+		if (win) {
+			for(Player pl: players) {
+				if(pl.getName().equals(name)) {
+					int num = pl.getNumOfWins();
+					pl.setNumOfWins(num + 1);
+					
+				}
+			}
+		}
 	}
 
 	// A method to load the txt file into an arraylist (if it exists, so you check
 	// if the txt file exists first)
 	public void loadAndCheckFile() throws IOException {
-
 		File file = new File(FILE_PATH);
+		String currentLine;
+		String[] splitLine;
+		
 		if (file.exists()) {
 			Scanner reader = new Scanner(file);
+			
 			while (reader.hasNextLine()) {
-				String line = reader.nextLine();
-				String[] splitLine = line.split(";");
+				
+				currentLine = reader.nextLine();
+				splitLine = currentLine.split(";");
 				Player p = new Player(splitLine[0], splitLine[1], Integer.parseInt(splitLine[2]));
 				players.add(p);
+				
 			}
 			reader.close();
 		}
@@ -92,10 +116,8 @@ public class GameManager {
 
 	// A method to search for a player based their name
 
-	private Player searchForPlayer() {
-		String name = appMenu.promptName();
+	private Player searchForPlayer(String name) {
 		Player searchedPlayer = null;
-		boolean found = false;
 		
 		for(Player p: players) {
 			if(p.getName().equals(name)) {
@@ -123,7 +145,8 @@ public class GameManager {
 			topPlayers();
 			break;
 		case 's':
-			Player player = searchForPlayer();
+			String name = appMenu.promptName();
+			Player player = searchForPlayer(name);
 			appMenu.showPlayer(player);
 			break;
 		case 'b':
