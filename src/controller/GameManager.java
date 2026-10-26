@@ -23,6 +23,7 @@ public class GameManager {
 	public static final String FILE_PATH = "res/CasinoInfo.txt";
 	ArrayList<Player> players;
 	AppMenu appMenu;
+	GameManager gm;
 
 	// constructor
 	public GameManager() throws Exception {
@@ -56,7 +57,22 @@ public class GameManager {
 	}
 
 	private void playGame() {
+		String name = appMenu.promptName();
+		player p = showPlayer(name);
+		if (p = null) {
+			String id = appMenu.promptId();
+			players.add(new Player(name, id, 0));
+		}
 		
+		gm = new GameManager();
+		boolean win = gm.launchGame();
+		if(win) {
+			for(Player pl: players) {
+				if(pl.getName().equals(name)) {
+					int num = pl.getNumOfWins();
+				}
+			}
+		}
 	}
 
 	// A method to load the txt file into an arraylist (if it exists, so you check
