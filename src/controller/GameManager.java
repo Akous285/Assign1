@@ -23,8 +23,8 @@ public class GameManager {
 	public static final String FILE_PATH = "res/CasinoInfo.txt";
 	private ArrayList<Player> players;
 	// this is a copy of players that will be used in playerMostWins
-	private ArrayList<Player> remainingPlayers = new ArrayList<Player>(); 
-	
+	private ArrayList<Player> remainingPlayers = new ArrayList<Player>();
+
 	AppMenu appMenu;
 	BlackjackGame bjg;
 
@@ -53,7 +53,7 @@ public class GameManager {
 			case 'e':
 				save();
 				flag = false;
-				//debugging code
+				// debugging code
 				System.out.println("rerun");
 				break;
 			}
@@ -189,17 +189,17 @@ public class GameManager {
 	 * @return the player with the highest number of wins
 	 */
 	private Player playerMostWins(ArrayList<Player> playerList) {
-	    Player bestPlayer = playerList.get(0);
+		Player bestPlayer = playerList.get(0);
 
-	    for (int i = 1; i < playerList.size(); i++) {
-	        Player currentPlayer = playerList.get(i);
+		for (int i = 1; i < playerList.size(); i++) {
+			Player currentPlayer = playerList.get(i);
 
-	        if (currentPlayer.getNumOfWins() > bestPlayer.getNumOfWins()) {
-	            bestPlayer = currentPlayer;
-	        }
-	    }
+			if (currentPlayer.getNumOfWins() > bestPlayer.getNumOfWins()) {
+				bestPlayer = currentPlayer;
+			}
+		}
 
-	    return bestPlayer;
+		return bestPlayer;
 	}
 
 }
