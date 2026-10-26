@@ -58,21 +58,21 @@ public class GameManager {
 	private void playGame() {
 		String name = appMenu.promptName();
 		Player p = searchForPlayer(name);
-		
+
 		if (p == null) {
 			String id = appMenu.promptId();
 			players.add(new Player(name, id, 0));
-			
+
 		}
-		
+
 		bjg = new BlackjackGame();
 		boolean win = bjg.launchGame();
 		if (win) {
-			for(Player pl: players) {
-				if(pl.getName().equals(name)) {
+			for (Player pl : players) {
+				if (pl.getName().equals(name)) {
 					int num = pl.getNumOfWins();
 					pl.setNumOfWins(num + 1);
-					
+
 				}
 			}
 		}
@@ -84,17 +84,17 @@ public class GameManager {
 		File file = new File(FILE_PATH);
 		String currentLine;
 		String[] splitLine;
-		
+
 		if (file.exists()) {
 			Scanner reader = new Scanner(file);
-			
+
 			while (reader.hasNextLine()) {
-				
+
 				currentLine = reader.nextLine();
 				splitLine = currentLine.split(";");
 				Player p = new Player(splitLine[0], splitLine[1], Integer.parseInt(splitLine[2]));
 				players.add(p);
-				
+
 			}
 			reader.close();
 		}
@@ -118,9 +118,9 @@ public class GameManager {
 
 	private Player searchForPlayer(String name) {
 		Player searchedPlayer = null;
-		
-		for(Player p: players) {
-			if(p.getName().equals(name)) {
+
+		for (Player p : players) {
+			if (p.getName().equals(name)) {
 				searchedPlayer = p;
 				break;
 			}
@@ -131,28 +131,34 @@ public class GameManager {
 	// A method to find the top players
 
 	private void topPlayers() {
-		
+		// check players with the most wins
+		// numOfWins is key here
+
 	}
 
 	// Depending on your designing technique you may need and you can add more
 	// methods here
-	
-	private void search() {
+
+	private void search() throws IOException {
 		char option = appMenu.searchMenu();
-		
-		switch(option) {
-		case 't':
-			topPlayers();
-			break;
-		case 's':
-			String name = appMenu.promptName();
-			Player player = searchForPlayer(name);
-			appMenu.showPlayer(player);
-			break;
-		case 'b':
-			break;
+		boolean flag = true;
+
+		while (flag) {
+			switch (option) {
+			case 't':
+				topPlayers();
+				break;
+			case 's':
+				String name = appMenu.promptName();
+				Player player = searchForPlayer(name);
+				appMenu.showPlayer(player);
+				break;
+			case 'b':
+				launchApplication();
+				flag = false;
+				break;
+			}
 		}
 	}
-	
 
 }
