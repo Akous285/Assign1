@@ -53,6 +53,7 @@ public class GameManager {
 				break;
 			case 'e':
 				save();
+				appMenu.save();
 				flag = false;
 				break;
 			}
@@ -131,6 +132,8 @@ public class GameManager {
 	// A method to find the top players
 
 	private void topPlayers() {
+		
+		
 		
 		
 		

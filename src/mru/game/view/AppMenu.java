@@ -89,6 +89,12 @@ public class AppMenu {
 		System.out.println("Sorry my number was " + number);
 		
 	}
+
+	public String save() {
+		System.out.println("Saving... ");
+		System.out.println("Done! Please Visit Us Again!");
+		return null;
+	}
 	
 	
 }
