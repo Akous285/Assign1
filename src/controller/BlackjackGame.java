@@ -5,38 +5,41 @@ import java.util.Random;
 import view.AppMenu;
 
 public class BlackjackGame {
-
-	Random rd;
-	AppMenu ap;
-	
-	public BlackjackGame() {
-		rd = new Random();
-		ap = new AppMenu();
-		launchGame();
-	}
-
-	public boolean launchGame() {
-		int guess;
-		int compNum = rd.nextInt(21) + 1;
-		boolean win = false;
+ 
+		Random rnd;
+		AppMenu gm;
 		
 		
-		
-		for (int i = 1; i<=3; i++) {
-			guess = ap.showGameMenu();
+		public BlackjackGame () {
+			rnd = new Random();
+			gm = new AppMenu();
+			launchGame();
 			
-			if(compNum > guess) {
-				ap.showGreaterMsg();
-			} else  if (compNum < guess) {
-				ap.showLesserMsg();
+		}
+
+		private void launchGame() {
+			char option;
+			int compNumber = rnd.nextInt(10) +1;
+			
+			for (int i=1; i<+3; i++ );{
+				option = gm.searchMenu();
 				
-			} else {
-				ap.showCongrats();
-				win = true;
-				break;
+				if (compNumber > option ) {
+					gm.showGreaterMsg();
+				
+				} else if (compNumber < option) {
+					gm.showLesserMsg();
+				} else if (compNumber == option) {
+					gm.gotBlackJack();
+				} else {
+					gm.showCongrats();
+					break;
+				
+				}
 			}
-			
-		} 
+		}
+}
+		
 		
 		if (!win) {
 			ap.showSorryMg(compNum);
