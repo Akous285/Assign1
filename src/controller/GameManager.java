@@ -21,7 +21,7 @@ public class GameManager {
 	 */
 
 	public static final String FILE_PATH = "res/CasinoInfo.txt";
-	ArrayList<Player> players;
+	private ArrayList<Player> players;
 	AppMenu appMenu;
 	BlackjackGame bjg;
 
@@ -133,7 +133,14 @@ public class GameManager {
 	private void topPlayers() {
 		// check players with the most wins
 		// numOfWins is key here
-
+		for(Player p: players) { // sort through players and stop after you have gotten the player with the most wins
+								 // take that player and store them and take them out of the pool for the next iteration
+								 // until you have stored three players
+			
+			if(p.getNumOfWins()) { // need to check their numOfWins and select the top 3
+				
+			}
+		}
 	}
 
 	// Depending on your designing technique you may need and you can add more
