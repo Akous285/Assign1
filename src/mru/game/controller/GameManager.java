@@ -132,6 +132,8 @@ public class GameManager {
 
 	private void topPlayers() {
 		
+		
+		
 	}
 
 	// Depending on your designing technique you may need and you can add more
@@ -144,7 +146,7 @@ public class GameManager {
 		case 't':
 			topPlayers();
 			break;
-		case 's':
+		case 'n':
 			String name = appMenu.promptName();
 			Player player = searchForPlayer(name);
 			appMenu.showPlayer(player);
