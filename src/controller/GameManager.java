@@ -22,8 +22,6 @@ public class GameManager {
 
 	public static final String FILE_PATH = "res/CasinoInfo.txt";
 	private ArrayList<Player> players;
-	// this is a copy of players that will be used in playerMostWins
-	private ArrayList<Player> remainingPlayers = new ArrayList<Player>();
 
 	AppMenu appMenu;
 	BlackjackGame bjg;
@@ -69,7 +67,7 @@ public class GameManager {
 			players.add(new Player(name, id, 0));
 
 		}
-
+		
 		bjg = new BlackjackGame();
 		boolean win = bjg.launchGame();
 		if (win) {
@@ -176,10 +174,11 @@ public class GameManager {
 
 			topThree.add(bestPlayer);
 			remainingPlayers.remove(bestPlayer);
-
 		}
+		
 		return topThree;
 	}
+	
 
 	/**
 	 * Finds the player with the most wins in the given list. If multiple players
