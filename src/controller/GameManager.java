@@ -51,8 +51,6 @@ public class GameManager {
 			case 'e':
 				save();
 				flag = false;
-				// debugging code
-				System.out.println("rerun");
 				break;
 			}
 		}
@@ -77,6 +75,8 @@ public class GameManager {
 				}
 			}
 		}
+		
+		
 	}
 
 	private void search() throws IOException {
