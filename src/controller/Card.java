@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 /**
  * This class represents a card
@@ -11,7 +11,7 @@ public class Card {
 	 * rank represents the rank of the current card
 	 */
 	private int rank;
-	
+
 	/**
 	 * suit represents the suit of the current card
 	 */
@@ -62,19 +62,21 @@ public class Card {
 	/**
 	 * This method overrides the toString method and shows the dat in the format we want
 	 */
+	@Override
 	public String toString() {
-		
+
 		String name = "King of ";
-		
-		if (rank >= 2 && rank <= 10)
+
+		if (rank >= 2 && rank <= 10) {
 			name = rank + " of ";
-		else if (rank == 1)
+		} else if (rank == 1) {
 			name = "Ace of ";
-		else if (rank == 11)
+		} else if (rank == 11) {
 			name = "Jack of ";
-		else if (rank == 12)
+		} else if (rank == 12) {
 			name = "Queen of ";
-		
+		}
+
 		return name + suit;
 	}
 

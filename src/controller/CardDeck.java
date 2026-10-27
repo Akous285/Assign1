@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,17 +10,17 @@ import java.util.Collections;
  */
 
 public class CardDeck {
-	
+
 	/**
 	 * deck holds all of the cards that currently are in the current deck
 	 */
 	private ArrayList <Card> deck;
-	
+
 	/**
 	 * This constructor initiate the arraylist and calls the repective methods to create a new deck
 	 */
 	public CardDeck() {
-		deck = new ArrayList<Card>();
+		deck = new ArrayList<>();
 		createDeck();
 		shuffleDeck();
 	}
@@ -31,7 +31,7 @@ public class CardDeck {
 	private void createDeck() {
 		// suits holds the name of the suits
 		String[] suits = {"Spades", "Diamond", "Clubs", "Hearts"};
-		
+
 		/*
 		 * The for loop creates a whole new deck based on their suit and rank
 		 */
@@ -40,14 +40,14 @@ public class CardDeck {
 				deck.add(new Card (j,suits[i]));
 			}
 		}
-		
+
 	}
 
 	/**
 	 * this method shuffle the deck after creating a new deck
 	 */
 	private void shuffleDeck() {
-		Collections.shuffle(deck); 
+		Collections.shuffle(deck);
 	}
 
 	/**

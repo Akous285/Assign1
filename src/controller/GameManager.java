@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -75,8 +75,8 @@ public class GameManager {
 				}
 			}
 		}
-		
-		
+
+
 	}
 
 	private void search() throws IOException {
@@ -156,7 +156,7 @@ public class GameManager {
 	 * Finds the three players with the most wins from the players list. The players
 	 * are returned in ranking order: index 0 is 1st place, index 1 is 2nd place,
 	 * and index 2 is 3rd place. The original players list is not modified.
-	 * 
+	 *
 	 * If there are fewer than three players, the returned list will contain only as
 	 * many players as exist. If players are tied, the one that appears earlier in
 	 * players is ranked higher.
@@ -165,8 +165,8 @@ public class GameManager {
 	 */
 	private ArrayList<Player> topPlayers() {
 		// new list so we don't corrupt existing one
-		ArrayList<Player> remainingPlayers = new ArrayList<Player>(players);
-		ArrayList<Player> topThree = new ArrayList<Player>();
+		ArrayList<Player> remainingPlayers = new ArrayList<>(players);
+		ArrayList<Player> topThree = new ArrayList<>();
 
 		for (int place = 1; place <= 3 && remainingPlayers.size() > 0; place++) {
 			Player bestPlayer = playerMostWins(remainingPlayers);
