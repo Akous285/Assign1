@@ -6,9 +6,14 @@ import view.AppMenu;
 
 public class BlackjackGame {
 
+	/**
+	 * In this class you implement the game You should use CardDeck class here See
+	 * the instructions for the game rules
+	 */
+
 	Random rd;
 	AppMenu ap;
-	
+
 	public BlackjackGame() {
 		rd = new Random();
 		ap = new AppMenu();
@@ -20,8 +25,6 @@ public class BlackjackGame {
 		int compNum = rd.nextInt(21) + 1;
 		boolean win = false;
 		
-		
-		
 		for (int i = 1; i<=3; i++) {
 			guess = ap.showGameMenu();
 			
@@ -29,24 +32,17 @@ public class BlackjackGame {
 				ap.showGreaterMsg();
 			} else  if (compNum < guess) {
 				ap.showLesserMsg();
-				
 			} else {
 				ap.showCongrats();
 				win = true;
 				break;
 			}
-			
-		} 
+		}
 		
 		if (!win) {
 			ap.showSorryMg(compNum);
-			
 		}
-		
+
 		return win;
-		
 	}
-	
-	
-	
 }
