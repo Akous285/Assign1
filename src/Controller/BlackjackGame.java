@@ -1,4 +1,4 @@
-package controller;
+Package Controller;
 
 import java.util.Random;
 
@@ -37,7 +37,7 @@ public class BlackjackGame {
 				win = true;
 				break;
 			}
-		} 
+		}
 		
 		
 		if (!win) {
