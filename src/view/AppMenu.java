@@ -22,6 +22,10 @@ public class AppMenu {
 			System.out.println("\t(E) Exit\n");
 			System.out.print("Enter a choice: ");
 			char option = input.nextLine().toLowerCase().charAt(0);
+			
+			//ignore first line in the casino.txt file
+			input.nextLine();
+			
 			return option;
 	}
 	

@@ -5,51 +5,44 @@ import java.util.Random;
 import view.AppMenu;
 
 public class BlackjackGame {
- 
-		Random rnd;
-		AppMenu gm;
-		
-		
-		public BlackjackGame () {
-			rnd = new Random();
-			gm = new AppMenu();
-			launchGame();
-			
-		}
 
-		private void launchGame() {
-			char option;
-			int compNumber = rnd.nextInt(10) +1;
+	/**
+	 * In this class you implement the game You should use CardDeck class here See
+	 * the instructions for the game rules
+	 */
+
+	Random rd;
+	AppMenu ap;
+
+	public BlackjackGame() {
+		rd = new Random();
+		ap = new AppMenu();
+		launchGame();
+	}
+
+	public boolean launchGame() {
+		int guess;
+		int compNum = rd.nextInt(21) + 1;
+		boolean win = false;
+		
+		for (int i = 1; i<=3; i++) {
+			guess = ap.showGameMenu();
 			
-			for (int i=1; i<+3; i++ );{
-				option = gm.searchMenu();
-				
-				if (compNumber > option ) {
-					gm.showGreaterMsg();
-				
-				} else if (compNumber < option) {
-					gm.showLesserMsg();
-				} else if (compNumber == option) {
-					gm.gotBlackJack();
-				} else {
-					gm.showCongrats();
-					break;
-				
-				}
+			if(compNum > guess) {
+				ap.showGreaterMsg();
+			} else  if (compNum < guess) {
+				ap.showLesserMsg();
+			} else {
+				ap.showCongrats();
+				win = true;
+				break;
 			}
 		}
-}
-		
 		
 		if (!win) {
 			ap.showSorryMg(compNum);
-			
 		}
-		
+
 		return win;
-		
 	}
-	
-	
-	
 }
