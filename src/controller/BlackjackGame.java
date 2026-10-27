@@ -37,7 +37,8 @@ public class BlackjackGame {
 				win = true;
 				break;
 			}
-		}
+		} 
+		
 		
 		if (!win) {
 			ap.showSorryMg(compNum);

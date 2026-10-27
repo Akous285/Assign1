@@ -24,7 +24,6 @@ public class GameManager {
 	private ArrayList<Player> players;
 
 	AppMenu appMenu;
-	GameManager gm;
 	BlackjackGame bjg;
 
 	// constructor
@@ -66,9 +65,8 @@ public class GameManager {
 		if (p == null) {
 			String id = appMenu.promptId();
 			players.add(new Player(name, id, 0));
-
 		}
-		
+
 		bjg = new BlackjackGame();
 		boolean win = bjg.launchGame();
 		if (win) {
@@ -76,7 +74,6 @@ public class GameManager {
 				if (pl.getName().equals(name)) {
 					int num = pl.getNumOfWins();
 					pl.setNumOfWins(num + 1);
-
 				}
 			}
 		}
@@ -143,6 +140,7 @@ public class GameManager {
 	// A method to search for a player based their name
 
 	private Player searchForPlayer(String name) {
+		name = appMenu.promptName();
 		Player searchedPlayer = null;
 
 		for (Player p : players) {
@@ -172,14 +170,13 @@ public class GameManager {
 
 		for (int place = 1; place <= 3 && remainingPlayers.size() > 0; place++) {
 			Player bestPlayer = playerMostWins(remainingPlayers);
-
 			topThree.add(bestPlayer);
 			remainingPlayers.remove(bestPlayer);
 		}
-		
+
 		return topThree;
 	}
-	
+
 	/**
 	 * Finds the player with the most wins in the given list. If multiple players
 	 * are tied for the most wins, the one that appears earliest in the list is
