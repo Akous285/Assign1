@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import java.util.Scanner;
 
@@ -43,10 +43,11 @@ public class AppMenu {
 	}
 
 	public void showPlayer(Player player) {
-		if (player != null)
+		if (player != null) {
 			System.out.println(player);
-		else
+		} else {
 			System.out.println("No records found for that name");
+		}
 	}
 
 	public String promptId() {
